@@ -1,12 +1,21 @@
 let http = require("http");
 let fs = require("fs");
 
-fs.readFile("input.txt", function (err, data) {
+fs.writeFile("input.txt", "test content.", function (err) {
   if (err) throw err;
-  console.log(data);
+  console.log("input file created");
 });
 
-fs.appendFile("output.txt", , function (err) {
+fs.readFile("input.txt", "utf8", function (err, data) {
   if (err) throw err;
-  console.log("");
+
+  let dateTime = new Date().toString();
+
+  let modifiedContent = data + "\n" + dateTime;
+
+  fs.writeFile("output.txt", modifiedContent, function (err) {
+    if (err) throw err;
+
+    console.log("File Saved");
+  });
 });
